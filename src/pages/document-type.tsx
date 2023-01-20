@@ -2,11 +2,17 @@ import React, {memo} from 'react';
 import Alert from "../components/alert";
 import {Info, Paperclip} from "lucide-react";
 import {useUploadFile} from "../hooks/useUploadFile";
+import {useNavigate} from "react-router-dom";
 
-type DocumentTypePageProps = {}
-
-const DocumentTypePage = ({}: DocumentTypePageProps) => {
+const DocumentTypePage = () => {
     const {documentType, typeChangeHandler} = useUploadFile();
+    const navigate = useNavigate();
+
+    const goNext = () => {
+        if(documentType) {
+            navigate(documentType.toString());
+        }
+    }
 
     return (
         <div className={"flex flex-col h-full gap-6"}>
@@ -49,7 +55,7 @@ const DocumentTypePage = ({}: DocumentTypePageProps) => {
                     {/*        }</span>*/}
                     {/*    </label>*/}
                     {/*</>*/}
-                    <button type={"button"}
+                    <button type={"button"} onClick={goNext}
                             className={`text-sm p-2 rounded bg-primary shadow-lg w-full text-white`}>
                         Continuer
                     </button>

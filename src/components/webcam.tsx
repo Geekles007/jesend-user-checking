@@ -23,7 +23,7 @@ const PhotoCapturer = ({webcamRef, capture, complete}: PhotoCapturerProps) => {
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
                 width={1280}
-                className={"flex-1 bg-gray-100"}
+                className={"flex-1 bg-gray-100 rounded"}
                 videoConstraints={videoConstraints}
             />
             {

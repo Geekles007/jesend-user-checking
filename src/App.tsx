@@ -6,6 +6,7 @@ import HomePage from "./pages/home";
 import AcceptPage from "./pages/accept";
 import DocumentTypePage from "./pages/document-type";
 import Testing from "./pages/testing";
+import PhotoCapture from "./pages/photo-capture";
 
 function App() {
     return (
@@ -13,9 +14,10 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<RootLayout/>}>
                     <Route index element={<HomePage />}/>
-                    <Route path={"accept"} element={<AcceptPage />}/>
-                    <Route path={"document-type"} element={<DocumentTypePage />}/>
-                    <Route path={"testing"} element={<Testing />}/>
+                    <Route path={":param1"} element={<AcceptPage />}/>
+                    <Route path={":param1/:param2"} element={<DocumentTypePage />}/>
+                    <Route path={":param1/:param2/:param3"} element={<Testing />}/>
+                    <Route path={":param1/:param2/:param3/:param4"} element={<PhotoCapture />}/>
                 </Route>
             </Routes>
         </div>
