@@ -1,16 +1,16 @@
 import React, {memo} from 'react';
-import {Send, X} from "lucide-react";
+import {Send} from "lucide-react";
+import {useTranslation} from "react-i18next";
 
-type CaptureHandlerProps = {
-}
+const CaptureHandler = () => {
+    const {t} = useTranslation("translation", {useSuspense: false});
 
-const CaptureHandler = ({}: CaptureHandlerProps) => {
     const send = () => {}
 
     return (
         <button onClick={send}
                 className={"text-sm p-2 rounded flex items-center justify-center gap-3 bg-primary shadow-lg w-full text-white"}>
-            <Send color={"#fff"}/> <span>Envoyer</span>
+            <Send color={"#fff"}/> <span>{t("sendText")}</span>
         </button>
     );
 }

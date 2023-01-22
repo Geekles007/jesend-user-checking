@@ -24,11 +24,11 @@ const StepItem = ({text, index}: StepItemProps) => {
 }
 
 const AcceptPage = () => {
-    const steps = [
-        `Filmer votre document d'identité <strong>original</strong>`,
-        `Filmer votre <strong>visage</strong>`
-    ];
     const {t} = useTranslation("translation", {useSuspense: false});
+    const steps = [
+        `filmDocumentText`,
+        `filmFaceText`
+    ];
     const {getMySchema, fields, onSubmit, onErrors} = AcceptController;
     const {register, handleSubmit, formState: {errors}} = useForm<IAcceptProps>({
         resolver: yupResolver(getMySchema)
@@ -48,21 +48,20 @@ const AcceptPage = () => {
                     <strong className={"mb-6 text-xl text-primary"}>{t("whatToDoText")}</strong>
                     <div className="flex flex-col gap-8">
                         {
-                            steps.map((item, index) => <StepItem key={index} text={item} index={index + 1} />)
+                            steps.map((item, index) => <StepItem key={index} text={t(item)} index={index + 1} />)
                         }
-
                         <Checkbox onChange={() => setAccept1(old => !old)} name={fields.acceptFaceScan as TAccept} defaultValue={accept1} register={register}>
                             <div className="flex flex-col flex-1">
-                                <span>J'accepte que mon visage soit filmé afin de <strong>vérifier à distance </strong></span>
-                                <a href={"/"} className={"underline"}>Comment sont traitées mes données?</a>
+                                <div dangerouslySetInnerHTML={{__html: t("acceptText1")}} />
+                                <a href={"/"} className={"underline"}>{t("acceptLinkText1")}</a>
                             </div>
                         </Checkbox>
                         {errors.acceptFaceScan && <p role="alert">{errors.acceptFaceScan?.message}</p>}
 
                         <Checkbox onChange={() => setAccept2(old => !old)} name={fields.acceptPolitics as TAccept} defaultValue={accept2} register={register}>
                             <div className="flex flex-col flex-1">
-                                <span>J'ai lu et j'accepte la <a href={"/"} className={"underline"}>Politique de confidentialité</a>
-                                    et les <a className={"underline"} href="/">Conditions Générales d'Utilisation</a></span>
+                                <span>{t("acceptReadText")} <a href={"/"} className={"underline"}>{t("privacyPolicyText")}</a>
+                                    &nbsp;{t("andTheText")} <a className={"underline"} href="/">{t("generalUseConditionsText")}</a></span>
                             </div>
                         </Checkbox>
                         {errors.acceptPolitics && <p role="alert">{errors.acceptPolitics?.message}</p>}
@@ -72,10 +71,10 @@ const AcceptPage = () => {
                     <button type={"button"} onClick={goNext} disabled={!accept1 || !accept2}
                             className={`text-sm p-2 rounded bg-primary shadow-lg w-full 
                             text-white ${!accept1 || !accept2 ? "bg-gray-100 text-gray-400" : ""}`}>
-                        J'accepte
+                        {t("iAcceptText")}
                     </button>
                     <a href="/" className={"flex items-center gap-2 text-xs text-gray-600"}>
-                        <span className={"underline"}>Je refuse de vérifier mon identité</span>
+                        <span className={"underline"}>{t("refuseTestingText")}</span>
                     </a>
                 </div>
             </form>

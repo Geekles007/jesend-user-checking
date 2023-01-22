@@ -1,10 +1,15 @@
-import React, {memo} from 'react';
+import React, {memo, useEffect} from 'react';
 import Header from "./header";
-import {Outlet} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
+import i18next from "i18next";
 
-type RootLayoutProps = {}
+const RootLayout = () => {
+    const {lang} = useParams();
 
-const RootLayout = ({}: RootLayoutProps) => {
+    useEffect(() => {
+        i18next.changeLanguage(lang);
+    }, [lang])
+
     return (
         <>
             <Header />

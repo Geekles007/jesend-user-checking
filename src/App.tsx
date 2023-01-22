@@ -14,10 +14,11 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<RootLayout/>}>
                     <Route index element={<HomePage />}/>
-                    <Route path={":param1"} element={<AcceptPage />}/>
-                    <Route path={":param1/:param2"} element={<DocumentTypePage />}/>
-                    <Route path={":param1/:param2/:param3"} element={<Testing />}/>
-                    <Route path={":param1/:param2/:param3/:param4"} element={<PhotoCapture />}/>
+                    <Route path={":lang"} element={<HomePage />}/>
+                    <Route path={":lang/:param2"} element={<AcceptPage />}/>
+                    <Route path={":lang/:param2/:param3"} element={<DocumentTypePage />}/>
+                    <Route path={":lang/:param2/:param3/:param4"} element={<Testing />}/>
+                    <Route path={":lang/:param2/:param3/:param4/:param5"} element={<PhotoCapture />}/>
                 </Route>
             </Routes>
         </div>

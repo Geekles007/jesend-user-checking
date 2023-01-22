@@ -3,9 +3,11 @@ import Alert from "../components/alert";
 import {Info, Paperclip} from "lucide-react";
 import {useUploadFile} from "../hooks/useUploadFile";
 import {useNavigate} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const DocumentTypePage = () => {
     const {documentType, typeChangeHandler} = useUploadFile();
+    const {t} = useTranslation("translation", {useSuspense: false});
     const navigate = useNavigate();
 
     const goNext = () => {
@@ -16,27 +18,27 @@ const DocumentTypePage = () => {
 
     return (
         <div className={"flex flex-col h-full gap-6"}>
-            <strong className={"text-xl text-primary"}>Selectionnez votre document</strong>
+            <strong className={"text-xl text-primary"}>{t("selectDocumentText")}</strong>
             <Alert icon={<Info size={18}/>}
-                   text={"Vous allez filmer le <strong>document original</strong> à l'étape suivante"}/>
+                   text={t("documentTypeAlertText")}/>
             <div className="flex flex-col border border-gray-300 rounded text-sm text-gray-600 mt-4">
                 <label htmlFor={"identity-card"} className="flex items-center p-2 gap-2 border-b-gray-300 border">
                     <Paperclip size={15}/>
-                    <span className={"flex-1"}>Carte d'identité</span>
+                    <span className={"flex-1"}>{t("identityCardText")}</span>
                     <input onChange={() => typeChangeHandler(1)}
                            className={"appearance-none border border-gray-300 h-4 w-4 rounded-full checked:bg-primary"}
                            id={"identity-card"} type="radio" name={"choice"}/>
                 </label>
                 <label htmlFor={"passport"} className="flex items-center p-2 gap-2 border-b-gray-300 border">
                     <Paperclip size={15}/>
-                    <span className={"flex-1"}>Passport</span>
+                    <span className={"flex-1"}>{t("passportText")}</span>
                     <input onChange={() => typeChangeHandler(2)}
                            className={"appearance-none border border-gray-300 h-4 w-4 rounded-full checked:bg-primary"}
                            id={"passport"} type="radio" name={"choice"}/>
                 </label>
                 <label htmlFor={"stay-title"} className="flex items-center p-2 gap-2">
                     <Paperclip size={15}/>
-                    <span className={"flex-1"}>Titre de séjour</span>
+                    <span className={"flex-1"}>{t("residencePermitText")}</span>
                     <input onChange={() => typeChangeHandler(3)}
                            className={"appearance-none border border-gray-300 h-4 w-4 rounded-full checked:bg-primary"}
                            id={"stay-title"} type="radio" name={"choice"}/>
@@ -57,7 +59,7 @@ const DocumentTypePage = () => {
                     {/*</>*/}
                     <button type={"button"} onClick={goNext}
                             className={`text-sm p-2 rounded bg-primary shadow-lg w-full text-white`}>
-                        Continuer
+                        {t("continueText")}
                     </button>
                 </div> : null
             }
